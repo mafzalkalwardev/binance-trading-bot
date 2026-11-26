@@ -1,0 +1,22 @@
+[Unit]
+Description=Donchian 4h paper-trading bot (Binance Spot Testnet)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/trading-bot
+# chmod 600, owned by ubuntu; contains BINANCE_TESTNET_API_KEY=... and BINANCE_TESTNET_API_SECRET=...
+EnvironmentFile=/etc/trading-bot.env
+ExecStart=/opt/trading-bot/.venv/bin/python -m paperbot run
+Restart=always
+RestartSec=30
+# a kill-switch halt exits cleanly; don't restart into a halted state forever
+RestartPreventExitStatus=0
+NoNewPrivileges=true
+ProtectSystem=full
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
