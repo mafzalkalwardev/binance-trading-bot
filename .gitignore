@@ -1,0 +1,22 @@
+# environments / caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# secrets
+.env
+.env*
+*.env
+*secret*
+*.key
+*.pem
+# runtime state & logs (live bot)
+state/
+logs/
+nohup.out
+*nohup*.log
+*.log
+# raw kline data (re-download with: python -m tradebot.data)
+data/*.parquet
+data/*.csv
